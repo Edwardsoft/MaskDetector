@@ -5,17 +5,19 @@ def readxml():
 	figure = []  #图像路径
 	position = []  #人脸位置
 	val = []  #标签
-	for root, dirs, files in os.walk("C:\Users\639\maskDectorData"):
+	for root, dirs, files in os.walk(r"C:\Users\639\maskDectorData"):
 		for file in files:
 			if os.path.splitext(file)[1] == ".xml":
-				domTree = parse("C:\Users\639\maskDectorData\\" + file)
+				domTree = parse(r"C:\Users\639\maskDectorData\\" + file)
 
 				# 文档根元素
 				rootNode = domTree.documentElement
 				# 所有顾客
 				peoples = rootNode.getElementsByTagName("object")
+				i = 1
 				for people in peoples:
-					figure.append("C:\Users\639\maskDectorData\\" + file)
+					figure.append(r"C:\Users\639\maskDectorData\\" + file + "_" + str(i))
+					i = i + 1
 					type = people.getElementsByTagName('name')[0].firstChild.data
 					if type == "face":
 						val.append(0)
