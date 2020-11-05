@@ -5,6 +5,7 @@ def readxml():
 	figure = []  #图像路径
 	position = []  #人脸位置
 	val = []  #标签
+	img_realname = [] # 图像真名
 	for root, dirs, files in os.walk(r"C:\Users\639\maskDectorData"):
 		for file in files:
 			if os.path.splitext(file)[1] == ".xml":
@@ -16,7 +17,8 @@ def readxml():
 				peoples = rootNode.getElementsByTagName("object")
 				i = 1
 				for people in peoples:
-					figure.append(r"C:\Users\639\maskDectorData\\" + file + "_" + str(i))
+					figure.append(r"C:\Users\639\maskDectorData\\" + os.path.splitext(file)[0] + ".jpg")
+					img_realname.append(os.path.splitext(file)[0] + "_" + str(i) + ".jpg")
 					i = i + 1
 					type = people.getElementsByTagName('name')[0].firstChild.data
 					if type == "face":
@@ -25,11 +27,11 @@ def readxml():
 						val.append(1)
 					bd = people.getElementsByTagName('bndbox')[0]
 					print(file)
-					pos = [];
-					xmin = bd.getElementsByTagName('xmin')[0].firstChild.data
-					ymin = bd.getElementsByTagName('ymin')[0].firstChild.data
-					xmax = bd.getElementsByTagName('xmax')[0].firstChild.data
-					ymax = bd.getElementsByTagName('ymax')[0].firstChild.data
+					pos = []
+					xmin = int(bd.getElementsByTagName('xmin')[0].firstChild.data)
+					ymin = int(bd.getElementsByTagName('ymin')[0].firstChild.data)
+					xmax = int(bd.getElementsByTagName('xmax')[0].firstChild.data)
+					ymax = int(bd.getElementsByTagName('ymax')[0].firstChild.data)
 					pos.append(xmin)
 					pos.append(xmax)
 					pos.append(ymin)
@@ -38,6 +40,6 @@ def readxml():
 	print(len(position))
 	print(len(val))
 	print(len(figure))
-	return position, val, figure
+	return position, val, figure, img_realname
 if __name__ == '__main__':
 	readxml()

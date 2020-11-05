@@ -17,23 +17,17 @@ def load_data_fashion_mnist(batch_size, resize=None,root=r'C:\Users\639\maskDect
     return trainloader
 
 
-def cut_img(imgs, postions, output_dir):
+def cut_img(imgs, postions, output_dir, img_name):
     length = len(imgs)
     print(imgs)
     for i in range(0, length):
         img = cv2.imread(imgs[i])
-        print(img)
         position = postions[i]
-        print(position)
-        print(type(position))
-        print(type(img))
-        crop_img = img[position[0]:position[1], position[2]:position[3]]
-        cv2.imwrite(output_dir, crop_img)
-
-
-
-
-
+        crop_img = img[position[2]:position[3], position[0]:position[1]]
+        #print(len(crop_img))
+        #print("==" + str(position[0]) + "== " + str(position[1]) + "== " + str(position[2]) + "== " + str(position[3]) + "== ")
+        print(output_dir + (imgs[i].split(r'\\', 1))[1])
+        cv2.imwrite(output_dir + img_name[i], crop_img)
 #batch_size = 28
 #如出现“out of memory”的报错信息，可减⼩batch_size或resize
 #train_iter = load_data_fashion_mnist(batch_size,resize=224)

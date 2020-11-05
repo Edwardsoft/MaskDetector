@@ -12,5 +12,5 @@ from data.load_data import cut_img
 #utils.train_ch5(net, train_iter, test_iter, batch_size, optimizer,
 #device, num_epochs)
 
-position, val, figure = readxml()
-cut_img(figure, position, r"C:\Users\639\maskDectorData\finalImg")
+position, val, figure, img_name = readxml()
+cut_img(figure, position, r"C:\Users\639\maskDectorData\finalImg\\", img_name)
