@@ -4,12 +4,12 @@ import numpy as np
 import h5py
 import matplotlib.pyplot as plt
 from Cython import inline
-%matplotlib inline
+#%matplotlib inline
 plt.rcParams['figure.figsize'] = (5.0, 4.0) # 设定图片的默认尺寸
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['image.cmap'] = 'gray'
-%load_ext autoreload
-%autoreload 2
+#%load_ext autoreload
+#%autoreload 2
 np.random.seed(1)
 
 

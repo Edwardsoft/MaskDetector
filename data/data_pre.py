@@ -6,10 +6,10 @@ def readxml():
 	position = []  #人脸位置
 	val = []  #标签
 	img_realname = [] # 图像真名
-	for root, dirs, files in os.walk(r"C:\Users\639\maskDectorData"):
+	for root, dirs, files in os.walk("D:\\maskDectorData\\train"):
 		for file in files:
 			if os.path.splitext(file)[1] == ".xml":
-				domTree = parse(r"C:\Users\639\maskDectorData\\" + file)
+				domTree = parse("D:\\maskDectorData\\train\\" + file)
 
 				# 文档根元素
 				rootNode = domTree.documentElement
@@ -17,7 +17,7 @@ def readxml():
 				peoples = rootNode.getElementsByTagName("object")
 				i = 1
 				for people in peoples:
-					figure.append(r"C:\Users\639\maskDectorData\\" + os.path.splitext(file)[0] + ".jpg")
+					figure.append("D:\\maskDectorData\\train\\" + os.path.splitext(file)[0] + ".jpg")
 					img_realname.append(os.path.splitext(file)[0] + "_" + str(i) + ".jpg")
 					i = i + 1
 					type = people.getElementsByTagName('name')[0].firstChild.data
